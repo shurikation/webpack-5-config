@@ -10,6 +10,16 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./js/main.js":
+/*!********************!*\
+  !*** ./js/main.js ***!
+  \********************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("\n\n__webpack_require__(/*! ../scss/main.scss */ \"./scss/main.scss\");\n\n__webpack_require__(/*! ../index.html */ \"./index.html\");\n\nvar a = 5;\n\nwindow.onload = function () {\n  return console.log(a);\n};\n\n//# sourceURL=webpack:///./js/main.js?");
+
+/***/ }),
+
 /***/ "./img/2.jpg":
 /*!*******************!*\
   !*** ./img/2.jpg ***!
@@ -47,16 +57,6 @@ eval("\n\nmodule.exports = function (url, options) {\n  if (!options) {\n    // 
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack:///./scss/main.scss?");
-
-/***/ }),
-
-/***/ "./js/main.js":
-/*!********************!*\
-  !*** ./js/main.js ***!
-  \********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scss_main_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scss/main.scss */ \"./scss/main.scss\");\n/* harmony import */ var _index_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../index.html */ \"./index.html\");\n\n\n\n\nconst a = 5;\n\nwindow.onload = () => console.log(a);\n\n\n//# sourceURL=webpack:///./js/main.js?");
 
 /***/ })
 
