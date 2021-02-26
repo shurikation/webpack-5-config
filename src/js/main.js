@@ -1,4 +1,4 @@
-
+import '../style.css';
 
 
 const a = 5;
