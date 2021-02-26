@@ -1,0 +1,21 @@
+{
+  "name": "webpack-lavrik",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+	"build": "cross-env NODE_ENV=production webpack --mode production",
+	"dev": "cross-env NODE_ENV=development webpack --mode development"
+	},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "webpack": "^5.24.2",
+    "webpack-cli": "^4.5.0"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  }
+}
