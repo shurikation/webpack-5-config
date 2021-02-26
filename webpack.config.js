@@ -18,6 +18,14 @@ module.exports = {
 		filename: `./js/${filename('js')}`,
 		path: path.resolve(__dirname, 'dist')
 	},
+	devServer: {
+		historyApiFallback: true,
+		contentBase: path.resolve(__dirname, 'dist'),
+		open: true,
+		compress: true,
+		hot: true,
+		port: 3000,
+	},
 	plugins: [
 		new HTMLWebpackPlugin({
 			template: path.resolve(__dirname, 'src/index.html'),
@@ -36,8 +44,11 @@ module.exports = {
 			{
 				test: /\.css$/i,
 				use: [MiniCssExtractPlugin.loader, 'css-loader']
+			},
+			{
+				test: /\.scss$/i,
+				use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
 			}
 		]
-		
 	}
 };

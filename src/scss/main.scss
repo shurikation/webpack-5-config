@@ -1,11 +1,13 @@
-@import "mixins";
-@import "fonts";
-@import "vendor";
-@import "vars";
-@import "settings";
+// @import "mixins";
+// @import "fonts";
+// @import "vendor";
+// @import "vars";
+// @import "settings";
+
 
 body {
   background-color: red;
-	background-image: url("../img/2.jpg");
-	color: red;
+  color: black;
 }
+
+@import "~normalize.css";
