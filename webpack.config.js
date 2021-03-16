@@ -10,8 +10,8 @@ const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
 
 const filename = (ext) => isDev 
-?  `[name].${ext}` 
-:  `[name].[contenthash].${ext}`
+	?  `[name].${ext}` 
+	:  `[name].[contenthash].${ext}`
 
 const optimization = () => {
 	const configObj = {
@@ -35,8 +35,7 @@ module.exports = {
 	entry: './js/main.js',
 	output: {
 		filename: `./js/${filename('js')}`,
-		path: path.resolve(__dirname, 'dist'),
-		// publicPath:''
+		path: path.resolve(__dirname, 'dist')
 	},
 	devServer: {
 		historyApiFallback: true,
@@ -47,6 +46,7 @@ module.exports = {
 		port: 3000,
 	},
 	optimization: optimization(),
+	target: ['web', 'es5'],
 	plugins: [
 		new HTMLWebpackPlugin({
 			template: path.resolve(__dirname, 'src/index.html'),
@@ -72,28 +72,46 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.js$/i,
-				exclude: /node_modules/,
-				use: ['babel-loader']
-			},	
+                test: /\.js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
+            },	
 			{
 				test: /\.html$/i,
 				loader: 'html-loader'
 			},
+			// {
+			// 	test: /\.scss$/i,
+			// 	use: [
+			// 		{
+			// 			loader: MiniCssExtractPlugin.loader, 
+			// 			options: {
+			// 				publicPath: (resourcePath, context) => {
+			// 					return path.relative(path.dirname(resourcePath), context) + '/'
+			// 				}
+			// 			}
+			// 		},
+			// 		'css-loader',
+			// 		'sass-loader'
+			// 	]
+			// },
 			{
-				test: /\.scss$/i,
+				test: /\.(scss|css)$/,
 				use: [
 					{
-						loader: MiniCssExtractPlugin.loader, 
+						loader: MiniCssExtractPlugin.loader,
 						options: {
 							publicPath: (resourcePath, context) => {
 								return path.relative(path.dirname(resourcePath), context) + '/'
 							}
 						}
-					},
-					'css-loader',
-					'sass-loader'
-				]
+					}, 'css-loader', 'postcss-loader', 'sass-loader'
+				],
 			},
 			{
 				test: /\.(?:|gif|png|jpg|jpeg|svg)$/i,
