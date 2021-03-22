@@ -46,7 +46,7 @@ module.exports = {
 		port: 3000,
 	},
 	optimization: optimization(),
-	target: ['web', 'es5'],
+	// target: ['web', 'es5'],
 	plugins: [
 		new HTMLWebpackPlugin({
 			template: path.resolve(__dirname, 'src/index.html'),
