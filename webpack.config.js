@@ -85,23 +85,8 @@ module.exports = {
 				test: /\.html$/i,
 				loader: 'html-loader'
 			},
-			// {
-			// 	test: /\.scss$/i,
-			// 	use: [
-			// 		{
-			// 			loader: MiniCssExtractPlugin.loader, 
-			// 			options: {
-			// 				publicPath: (resourcePath, context) => {
-			// 					return path.relative(path.dirname(resourcePath), context) + '/'
-			// 				}
-			// 			}
-			// 		},
-			// 		'css-loader',
-			// 		'sass-loader'
-			// 	]
-			// },
 			{
-				test: /\.(scss|css)$/,
+				test: /\.(scss)$/,
 				use: [
 					{
 						loader: MiniCssExtractPlugin.loader,
@@ -114,23 +99,9 @@ module.exports = {
 				],
 			},
 			{
-				test: /\.(?:|gif|png|jpg|jpeg|svg)$/i,
-				use: [{
-					loader: 'file-loader',
-					options: {
-						name: `./img/${filename('[ext]')}`
-					}
-				}]
-			},
-			{
-				test: /\.(?:|woff2)$/i,
-				use: [{
-					loader: 'file-loader',
-					options: {
-						name: `./fonts/${filename('[ext]')}`
-					}
-				}]
-			}		
+				test: /\.(png|jpg|jpeg|svg)$/i,
+				type: 'asset/resource'
+			}
 		]
 	}
 };
