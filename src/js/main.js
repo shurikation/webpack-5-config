@@ -1,7 +1,8 @@
-import '../scss/main.scss';
-import '../index.html';
+// 'use strict';
 
+import './common/notificationHub';
+// import './common/notificationMenu';
+import './common/menuHandler';
 
-const a = 5;
+// import './service/signalr'
 
-window.onload = () => console.log(a);

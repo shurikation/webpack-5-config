@@ -35,5 +35,14 @@
   "dependencies": {
     "autoprefixer": "^10.2.5",
     "core-js": "^3.9.1"
+  },
+  "browser": {
+    "http": false,
+    "https":false,
+    "net": false,
+    "path": false,
+    "stream": false,
+    "tls": false,
+    "fs": false
   }
 }
