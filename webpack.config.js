@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
+const WebpackConcatPlugin = require('webpack-concat-files-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
@@ -30,6 +31,7 @@ const optimization = () => {
 	return configObj;
 }
 
+
 module.exports = {
 	context: path.resolve(__dirname, 'src'),
 	mode: 'development',
@@ -49,13 +51,28 @@ module.exports = {
 	optimization: optimization(),
 	// target: ['web', 'es5'],
 	plugins: [
-		new HTMLWebpackPlugin({
-			template: path.resolve(__dirname, 'src/index.html'),
-			filename: 'index.html',
-			minify: {
-				collapseWhitespace: isProd
-			}
+		new WebpackConcatPlugin({
+			bundles: [
+			  {
+				dest: path.resolve(__dirname, 'dist/libs.js'),
+				src: [
+					'./src/js/service/jquery-3.4.1.min.js', 
+					'./src/js/service/jquery.validate.min.js',
+					'./src/js/service/jquery.validate.unobtrusive.min.js',
+					'./src/js/service/jquery.fancybox.min.js',
+					'./src/js/service/signalr.min.js',
+					'./src/js/service/gsap.min.js'
+				],
+			  },
+			],
 		}),
+		// new HTMLWebpackPlugin({
+		// 	template: path.resolve(__dirname, 'src/index.html'),
+		// 	filename: 'index.html',
+		// 	minify: {
+		// 		collapseWhitespace: isProd
+		// 	}
+		// }),
 		new CleanWebpackPlugin(),
 		new MiniCssExtractPlugin({
 			filename: `./css/${filename('css')}`

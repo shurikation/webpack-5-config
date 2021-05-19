@@ -1,1 +1,887 @@
-(()=>{"use strict";var e={420:()=>{window.addEventListener("DOMContentLoaded",(function(){var e=document.getElementById("MainBurgerMenuToggler"),t=document.querySelector(".main-header__menu-button"),n=document.getElementById("HeaderMenu"),o=document.querySelector(".main-header__menu-list"),i=!1;e.addEventListener("click",(function(){t.classList.toggle("toggler--active"),i?(o.classList.remove("smoothlyShow"),o.classList.add("smoothlyHide"),setTimeout((function(){o.classList.add("collapse")}),300),n.classList.remove("menu--opened"),i=!1):(n.classList.add("menu--opened"),o.classList.remove("collapse"),o.classList.remove("smoothlyHide"),o.classList.add("smoothlyShow"),i=!0)}));var s=document.querySelectorAll(".sidebar__link--spoiler"),a=function(e){return sessionStorage.getItem(e)},c=function(e,t,n,o){!function(e,t){sessionStorage.setItem(e.id,t)}(e,t),function(e,t,n){var o=e.parentNode.querySelector(".sidebar__list");o.style.height=function(e,t){if(!t)return 0;var n=e.querySelectorAll(".sidebar__elem"),o=0;return n.forEach((function(e){var t=e.getBoundingClientRect().height;o+=t})),o}(o,t)+"px",o.style.transition=n}(e,o,n),function(e,t,n){var o=e.parentNode.querySelector(".sidebar__link-icon");"open"===t?o.classList.remove("rotate-arrow"):"close"===t&&o.classList.add("rotate-arrow"),o.style.transition="all "+n}(e,t,n)};s.forEach((function(e){return e.addEventListener("click",(function(e){var t=e.target,n=a(t.id);n&&"close"!==n?"open"===n&&c(t,"close","0.7s",0):c(t,"open","0.7s",!0)}))}));var r=function(){s.forEach((function(e){var t=a(e.id);"close"===t?c(e,"close","0s",0):"open"===t&&c(e,"open","0s",!0)}))};r();var l=document.getElementById("LeftBurgerMenuToggler"),u=document.querySelector(".main-header__menu-button--left"),d=document.getElementById("Sidebar"),f=!1;if(!l)return!1;l.addEventListener("click",(function(){f?(u.classList.remove("menu--left"),d.classList.remove("left-menu--opened"),setTimeout((function(){d.classList.remove("left-menu--max-height")}),500),f=!1):(r(),u.classList.add("menu--left"),d.classList.add("left-menu--max-height"),setTimeout((function(){d.classList.add("left-menu--opened")}),100),f=!0)}))}))},973:(e,t,n)=>{var o,i=n(205),s=i(n(135)),a=i(n(264)),c="purchases_notices",r="offers_notices",l="auctions_notices",u="contracts_notices",d="deals_notices",f="finance_notices";window.addEventListener("DOMContentLoaded",(function(){var e=[],t=(document.querySelector(".main-menu__dialogs"),document.getElementById("dialogNewMessageIcon")),n=$("#PurchasesQty"),i=$("#PurchasesNotice"),p=$("#OffersQty"),m=$("#OffersNotice"),g=$("#AuctionsQty"),h=$("#AuctionsNotice"),v=$("#ContractsQty"),y=$("#ContractsNotice"),L=$("#DealsQty"),N=$("#DealsNotice"),w=$("#FinancesQty"),b=$("#FinansesNotice");function E(){return(E=(0,a.default)(s.default.mark((function t(){return s.default.wrap((function(t){for(;;)switch(t.prev=t.next){case 0:return(o=(new signalR.HubConnectionBuilder).withUrl("/Notifications/NotificationHub").build()).onclose((0,a.default)(s.default.mark((function e(){return s.default.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return e.next=2,x(1e4);case 2:case"end":return e.stop()}}),e)})))),o.on("UpdateNotificationCounters",(function(e){S(e.unreadDialogCount),D(n,e.purchaseNoticeCount),D(p,e.offersNoticeCount),D(g,e.auctionNoticeCount),D(v,e.updatedContractCount),D(L,e.updatedDealCount),D(w,e.financeNoticeCount),e.sumCount>0?q():I()})),o.on("ReceiptedNewMessage",(function(t){var n="#dialog_"+t;e.includes(n)||($(n).find("span.dialogs-title").after('<div class="dialogs-title dialogs-new-message-trigger--temp"><span class="dialog-new-message-button--temp">Новое сообщение</span></div>'),$(n).find("img").attr("src","/images/convert.svg"),e.push(n));S(e.length)})),o.on("DialogReaded",(function(t){var n="#dialog_"+t;e.includes(n)&&e.splice(n),S(e.length)})),o.on("PurchaseNotification",(function(){A(n),q()})),o.on("OfferNotification",(function(){A(p),q()})),o.on("AuctionNotification",(function(){A(g),q()})),o.on("ContractNotification",(function(){A(v),q()})),o.on("DealNotification",(function(){A(L),q()})),o.on("FinanceNotification",(function(){A(w),q()})),o.on("DisplayPurchasesNotices",(function(e){B(i,e),D(n,e)})),o.on("DisplayOffersNotices",(function(e){B(m,e),D(p,e)})),o.on("DisplayAuctionsNotices",(function(e){B(h,e),D(g,e)})),o.on("DisplayContractsNotices",(function(e){B(y,e),D(v,e)})),o.on("DisplayDealsNotices",(function(e){B(N,e),D(L,e)})),o.on("DisplayFinanceNotices",(function(e){e.forEach((function(e){return console.log(e.isNew)})),B(b,e),D(w,e)})),t.next=19,_();case 19:case"end":return t.stop()}}),t)})))).apply(this,arguments)}function _(){return k.apply(this,arguments)}function k(){return(k=(0,a.default)(s.default.mark((function e(){return s.default.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return e.prev=0,o.logging=!0,e.next=4,o.start();case 4:console.log("notifications connected."),o.invoke("GetNotifications").catch((function(e){return console.log(e.toString())})),e.next=11;break;case 8:e.prev=8,e.t0=e.catch(0),console.log(e.t0);case 11:case"end":return e.stop()}}),e,null,[[0,8]])})))).apply(this,arguments)}function x(e,t){return C.apply(this,arguments)}function C(){return(C=(0,a.default)(s.default.mark((function e(t,n){return s.default.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return e.prev=0,e.next=3,o.start();case 3:n?(console.log("notice hub reloading..."),window.location.reload(!0)):console.log("notice hub connected."),e.next=10;break;case 6:e.prev=6,e.t0=e.catch(0),console.log(e.t0),setTimeout((function(){return x(t,!0)}),t);case 10:case"end":return e.stop()}}),e,null,[[0,6]])})))).apply(this,arguments)}function S(e){if(!t)return!1;e>0?t.classList.remove("collapse"):t.classList.add("collapse")}function D(e,t){t>0?e.html(t):e.html("0")}function A(e){var t=parseInt(e.html());t++,e.html(t)}function B(e,t){var n,o;t.length||(n=e,(o=document.createElement("li")).textContent="Оповещений нет",o.classList.add("drop-card__link"),n.append(o)),t.reverse().forEach((function(t){var n=document.createElement("li");n.classList.add("drop-card__item"),t.isNew&&n.classList.add("item--isNew");var o=document.createElement("a");if(o.classList.add("drop-card__link"),o.href="/Notification/RedirectToSource?id="+t.id,o.textContent=t.title,t.message){var i=document.createElement("span");i.classList.add("drop-card__message"),i.textContent=t.message,o.appendChild(i)}n.appendChild(o),e.append(n)}))}function q(){$("#DropdownToggler").addClass("pulsingButton")}function I(){$("#DropdownToggler").removeClass("pulsingButton")}var T=!1,M=!1,O=!1,R=!1,G=!1,H=!1;if(document.getElementById("ReadAllNotices")){document.querySelectorAll(".drop-card").forEach((function(e){e.addEventListener("click",X)})),document.getElementById("ReadAllNotices").addEventListener("click",(function(){o.invoke("ReadAll").catch((function(e){return console.log(e.toString())}))}));var P=document.getElementById("DropdownToggler"),Q=document.getElementById("DropdownMenu"),F=document.querySelector(".fa-bell");P.addEventListener("click",(function(){var e=P.getAttribute("data-state");switch(console.log(e),e){case"closed":Q.classList.remove("collapse"),Q.classList.remove("smoothlyHide"),Q.classList.add("smoothlyShow"),P.setAttribute("data-state","opened");break;case"opened":Y()}})),document.addEventListener("click",(function(e){e.target.closest("#DropdownMenu")||e.target===P||e.target===F||Y()}));var j=document.querySelectorAll(".toggler--js"),U=document.querySelectorAll(".drop-card__qty"),z=null,J=null;j.forEach((function(e){e.addEventListener("click",(function(){var t="card-"+e.dataset.id,n=(z=document.querySelector("[data-id="+t+"]")).getAttribute("data-state");"closed"===n?Z(z,200,"opened"):"opened"===n&&Z(z,0,"closed"),J&&J!==z&&Z(J,0,"closed"),J=z,setTimeout((function(){var e,t;e=+U.length,t=0,U.forEach((function(e){"0"==e.textContent&&t++})),t>=e&&P.classList.remove("pulsingButton")}),1500)}))}));var K=document.getElementById("headerOrganizationName");if(!K)return!1;var V=K.textContent;if(V.length>39){var W=V.slice(0,39);K.textContent=W+"..."}!function(){E.apply(this,arguments)}()}function X(){this.getAttribute("data-type").split(" ").forEach((function(e){!function(e){var t;switch(e){case c:if(T)return;T=!0,t="GetPurchasesNotices";break;case r:if(M)return;M=!0,t="GetOffersNotices";break;case l:if(O)return;O=!0,t="GetAuctionsNotices";break;case u:if(R)return;R=!0,t="GetContractsNotices";break;case d:if(G)return;G=!0,t="GetDealsNotices";break;case f:if(H)return;H=!0,t="GetFinanceNotices";break;default:return}o.invoke(t).catch((function(e){return console.log(e.toString())}))}(e)}))}function Y(){Q.classList.remove("smoothlyShow"),Q.classList.add("smoothlyHide"),setTimeout((function(){Q.classList.add("collapse")}),300),P.setAttribute("data-state","closed")}function Z(e,t,n){e.style.height=t+"px",e.setAttribute("data-state",n)}}))},32:(e,t,n)=>{n(973),n(420)}},t={};function n(o){if(t[o])return t[o].exports;var i=t[o]={exports:{}};return e[o](i,i.exports,n),i.exports}n.m=e,n.x=e=>{},n.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),(()=>{var e={179:0},t=[[32,236]],o=e=>{},i=(i,s)=>{for(var a,c,[r,l,u,d]=s,f=0,p=[];f<r.length;f++)c=r[f],n.o(e,c)&&e[c]&&p.push(e[c][0]),e[c]=0;for(a in l)n.o(l,a)&&(n.m[a]=l[a]);for(u&&u(n),i&&i(s);p.length;)p.shift()();return d&&t.push.apply(t,d),o()},s=self.webpackChunk=self.webpackChunk||[];function a(){for(var o,i=0;i<t.length;i++){for(var s=t[i],a=!0,c=1;c<s.length;c++){var r=s[c];0!==e[r]&&(a=!1)}a&&(t.splice(i--,1),o=n(n.s=s[0]))}return 0===t.length&&(n.x(),n.x=e=>{}),o}s.forEach(i.bind(null,0)),s.push=i.bind(null,s.push.bind(s));var c=n.x;n.x=()=>(n.x=c||(e=>{}),(o=a)())})();n.x()})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./js/common/menuHandler.js":
+/*!**********************************!*\
+  !*** ./js/common/menuHandler.js ***!
+  \**********************************/
+/***/ (() => {
+
+
+
+window.addEventListener('DOMContentLoaded', function () {
+  /**
+   * *Открывает и закрывает бургер-меню в мобильной версии
+   */
+  var menuTogglerWrapper = document.getElementById('MainBurgerMenuToggler');
+  var menuToggler = document.querySelector('.main-header__menu-button');
+  var headerMenu = document.getElementById('HeaderMenu');
+  var headerMenuContent = document.querySelector('.main-header__menu-list');
+  var isMenuOpened = false;
+
+  var openMenu = function openMenu() {
+    headerMenu.classList.add('menu--opened');
+    headerMenuContent.classList.remove('collapse');
+    headerMenuContent.classList.remove('smoothlyHide');
+    headerMenuContent.classList.add('smoothlyShow');
+    isMenuOpened = true;
+  };
+
+  var closeMenu = function closeMenu() {
+    headerMenuContent.classList.remove('smoothlyShow');
+    headerMenuContent.classList.add('smoothlyHide');
+    setTimeout(function () {
+      headerMenuContent.classList.add('collapse');
+    }, 300);
+    headerMenu.classList.remove('menu--opened');
+    isMenuOpened = false;
+  };
+
+  menuTogglerWrapper.addEventListener('click', function () {
+    menuToggler.classList.toggle('toggler--active');
+
+    if (!isMenuOpened) {
+      openMenu();
+    } else {
+      closeMenu();
+    }
+  });
+  /**
+   * *Переключатель спойлеров левого меню (сайдбар)
+   */
+
+  var spoilerLinks = document.querySelectorAll('.sidebar__link--spoiler'); // const spoilerIcons = document.querySelectorAll('.sidebar__link-icon');
+  // const spoilerLists = document.querySelectorAll('.sidebar__list--spoiler');
+
+  var getSpoilerState = function getSpoilerState(link) {
+    return sessionStorage.getItem(link);
+  };
+
+  var setSpoilerState = function setSpoilerState(link, state) {
+    return sessionStorage.setItem(link.id, state);
+  };
+
+  var getHiddenListHeight = function getHiddenListHeight(list, listHeight) {
+    if (!listHeight) return 0;
+    var links = list.querySelectorAll('.sidebar__elem');
+    var totalHeight = 0;
+    links.forEach(function (link) {
+      var linkHeight = link.getBoundingClientRect().height;
+      totalHeight += linkHeight;
+    });
+    return totalHeight;
+  };
+
+  var resizeSpoiler = function resizeSpoiler(link, height, time) {
+    var list = link.parentNode.querySelector('.sidebar__list');
+    list.style.height = getHiddenListHeight(list, height) + 'px';
+    list.style.transition = time;
+  };
+
+  var rotateArrow = function rotateArrow(link, state, time) {
+    var icon = link.parentNode.querySelector('.sidebar__link-icon');
+
+    if (state === 'open') {
+      icon.classList.remove('rotate-arrow');
+    } else if (state === 'close') {
+      icon.classList.add('rotate-arrow');
+    }
+
+    icon.style.transition = 'all ' + time;
+  };
+
+  var toggleSpoiler = function toggleSpoiler(link, state, time, height) {
+    setSpoilerState(link, state);
+    resizeSpoiler(link, height, time);
+    rotateArrow(link, state, time);
+  };
+
+  var spoilerClickHandler = function spoilerClickHandler() {
+    spoilerLinks.forEach(function (link) {
+      return link.addEventListener('click', function (event) {
+        var link = event.target;
+        var linkState = getSpoilerState(link.id);
+
+        if (!linkState || linkState === 'close') {
+          toggleSpoiler(link, 'open', '0.7s', true);
+        } else if (linkState === 'open') {
+          toggleSpoiler(link, 'close', '0.7s', 0);
+        }
+      });
+    });
+  };
+
+  spoilerClickHandler();
+
+  var setSpoilerDisplayAfterPageReload = function setSpoilerDisplayAfterPageReload() {
+    spoilerLinks.forEach(function (link) {
+      var linkState = getSpoilerState(link.id);
+
+      if (linkState === 'close') {
+        toggleSpoiler(link, 'close', '0s', 0);
+      } else if (linkState === 'open') {
+        toggleSpoiler(link, 'open', '0s', true);
+      }
+    });
+  };
+
+  setSpoilerDisplayAfterPageReload();
+  /**
+   * *Переключатель левого меню (сайдбар) в мобильной версии
+   */
+
+  var leftMenuTogglerWrapper = document.getElementById('LeftBurgerMenuToggler');
+  var leftMenuToggler = document.querySelector('.main-header__menu-button--left');
+  var leftHeaderMenu = document.getElementById('Sidebar');
+  var isLeftMenuOpened = false;
+  if (!leftMenuTogglerWrapper) return false;
+
+  var openLeftMenu = function openLeftMenu() {
+    setSpoilerDisplayAfterPageReload();
+    leftMenuToggler.classList.add('menu--left');
+    leftHeaderMenu.classList.add('left-menu--max-height');
+    setTimeout(function () {
+      leftHeaderMenu.classList.add('left-menu--opened');
+    }, 100);
+    isLeftMenuOpened = true;
+  };
+
+  var closeLeftMenu = function closeLeftMenu() {
+    leftMenuToggler.classList.remove('menu--left');
+    leftHeaderMenu.classList.remove('left-menu--opened');
+    setTimeout(function () {
+      leftHeaderMenu.classList.remove('left-menu--max-height');
+    }, 500);
+    isLeftMenuOpened = false;
+  };
+
+  leftMenuTogglerWrapper.addEventListener('click', function () {
+    if (!isLeftMenuOpened) {
+      openLeftMenu();
+    } else {
+      closeLeftMenu();
+    }
+  });
+});
+
+/***/ }),
+
+/***/ "./js/common/notificationHub.js":
+/*!**************************************!*\
+  !*** ./js/common/notificationHub.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault/index.js");
+
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ "../node_modules/@babel/runtime/regenerator/index.js"));
+
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "../node_modules/@babel/runtime/helpers/asyncToGenerator/index.js"));
+
+var notificationHubConnection;
+var purchaseNoticesreceived = false;
+var offerNoticesreceived = false;
+var auctionNoticesreceived = false;
+var contractNoticesreceived = false;
+var financeNoticesreceived = false;
+/* Значения используются в качестве классов списков групп уведомлений*/
+
+var wrapper = {
+  "unreadDialogs": "unread_dialogs",
+  "purchases": "purchases_notices",
+  "offers": "offers_notices",
+  "auctions": "auctions_notices",
+  "startedAuctions": "started_auctions_notices",
+  "finishedAuctions": "finished_auctions_notices",
+  "updatedContracts": "contracts_notices",
+  "updatedDeals": "deals_notices",
+  "purchasesArchive": "purchases_archive_notices",
+  "finance": "finance_notices"
+};
+window.addEventListener('DOMContentLoaded', function () {
+  var newMessageTitleStatuses = [];
+  var mainMenuDialogElement = document.querySelector(".main-menu__dialogs");
+  var dialogNewMessageIcon = document.getElementById("dialogNewMessageIcon");
+  var purchasesNoticeTab = $("#PurchasesQty");
+  var purchasesNotificationList = $("#PurchasesNotice");
+  var offersNoticeTab = $("#OffersQty");
+  var offersNotificeList = $("#OffersNotice");
+  var auctionsNoticeTab = $("#AuctionsQty");
+  var AuctionsNotificeList = $("#AuctionsNotice");
+  var contractsNoticeTab = $("#ContractsQty");
+  var contractsNotificeList = $("#ContractsNotice");
+  var dealsNoticeTab = $("#DealsQty");
+  var dealsNotificeList = $("#DealsNotice");
+  var financeNoticeTab = $("#FinancesQty");
+  var financeNoticeList = $("#FinansesNotice");
+
+  function connectToNotificationHub() {
+    return _connectToNotificationHub.apply(this, arguments);
+  }
+
+  function _connectToNotificationHub() {
+    _connectToNotificationHub = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2() {
+      return _regenerator["default"].wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              notificationHubConnection = new signalR.HubConnectionBuilder().withUrl("/Notifications/NotificationHub").build(); // Повторное подключение вручную
+
+              notificationHubConnection.onclose( /*#__PURE__*/(0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee() {
+                return _regenerator["default"].wrap(function _callee$(_context) {
+                  while (1) {
+                    switch (_context.prev = _context.next) {
+                      case 0:
+                        _context.next = 2;
+                        return startNotificationHubConnectionWithAutoReconnect(10000);
+
+                      case 2:
+                      case "end":
+                        return _context.stop();
+                    }
+                  }
+                }, _callee);
+              })));
+              notificationHubConnection.on("UpdateNotificationCounters", function (data) {
+                displayCounterUnreadDialogs(data.unreadDialogCount);
+                displayNoticeCounter(purchasesNoticeTab, data.purchaseNoticeCount);
+                displayNoticeCounter(offersNoticeTab, data.offersNoticeCount);
+                displayNoticeCounter(auctionsNoticeTab, data.auctionNoticeCount);
+                displayNoticeCounter(contractsNoticeTab, data.updatedContractCount);
+                displayNoticeCounter(dealsNoticeTab, data.updatedDealCount);
+                displayNoticeCounter(financeNoticeTab, data.financeNoticeCount);
+
+                if (data.sumCount > 0) {
+                  addPulseForButton();
+                } else {
+                  removePulseForButton();
+                }
+              }); //increase by one notices counters
+
+              notificationHubConnection.on("ReceiptedNewMessage", function (dialogId) {
+                var selector = "#dialog_" + dialogId;
+
+                if (!newMessageTitleStatuses.includes(selector)) {
+                  var first = $(selector).find('span.dialogs-title');
+                  first.after("<div class=\"dialogs-title dialogs-new-message-trigger--temp\"><span class=\"dialog-new-message-button--temp\">Новое сообщение</span></div>");
+                  var img = $(selector).find('img');
+                  img.attr('src', '/images/convert.svg');
+                  newMessageTitleStatuses.push(selector);
+                }
+
+                displayCounterUnreadDialogs(newMessageTitleStatuses.length);
+              });
+              notificationHubConnection.on("DialogReaded", function (dialogId) {
+                var selector = "#dialog_" + dialogId;
+
+                if (newMessageTitleStatuses.includes(selector)) {
+                  newMessageTitleStatuses.splice(selector);
+                }
+
+                displayCounterUnreadDialogs(newMessageTitleStatuses.length);
+              });
+              notificationHubConnection.on("PurchaseNotification", function () {
+                increaseByOneNoticeCounter(purchasesNoticeTab);
+                addPulseForButton();
+              });
+              notificationHubConnection.on("OfferNotification", function () {
+                increaseByOneNoticeCounter(offersNoticeTab);
+                addPulseForButton();
+              });
+              notificationHubConnection.on("AuctionNotification", function () {
+                increaseByOneNoticeCounter(auctionsNoticeTab);
+                addPulseForButton();
+              });
+              notificationHubConnection.on("ContractNotification", function () {
+                increaseByOneNoticeCounter(contractsNoticeTab);
+                addPulseForButton();
+              });
+              notificationHubConnection.on("DealNotification", function () {
+                increaseByOneNoticeCounter(dealsNoticeTab);
+                addPulseForButton();
+              });
+              notificationHubConnection.on("FinanceNotification", function () {
+                increaseByOneNoticeCounter(financeNoticeTab);
+                addPulseForButton();
+              }); //get notifications
+
+              notificationHubConnection.on("DisplayPurchasesNotices", function (data) {
+                addNoticeList(purchasesNotificationList, data);
+                displayNoticeCounter(purchasesNoticeTab, data);
+              });
+              notificationHubConnection.on("DisplayOffersNotices", function (data) {
+                addNoticeList(offersNotificeList, data);
+                displayNoticeCounter(offersNoticeTab, data);
+              });
+              notificationHubConnection.on("DisplayAuctionsNotices", function (data) {
+                addNoticeList(AuctionsNotificeList, data);
+                displayNoticeCounter(auctionsNoticeTab, data);
+              });
+              notificationHubConnection.on("DisplayContractsNotices", function (data) {
+                addNoticeList(contractsNotificeList, data);
+                displayNoticeCounter(contractsNoticeTab, data);
+              });
+              notificationHubConnection.on("DisplayDealsNotices", function (data) {
+                addNoticeList(dealsNotificeList, data);
+                displayNoticeCounter(dealsNoticeTab, data);
+              });
+              notificationHubConnection.on("DisplayFinanceNotices", function (data) {
+                data.forEach(function (d) {
+                  return console.log(d.isNew);
+                });
+                addNoticeList(financeNoticeList, data);
+                displayNoticeCounter(financeNoticeTab, data);
+              }); // Запуск хаба
+
+              _context2.next = 19;
+              return startNotificationHubConnection();
+
+            case 19:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+    return _connectToNotificationHub.apply(this, arguments);
+  }
+
+  ;
+
+  function startNotificationHubConnection() {
+    return _startNotificationHubConnection.apply(this, arguments);
+  }
+
+  function _startNotificationHubConnection() {
+    _startNotificationHubConnection = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3() {
+      return _regenerator["default"].wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.prev = 0;
+              notificationHubConnection.logging = true;
+              _context3.next = 4;
+              return notificationHubConnection.start();
+
+            case 4:
+              console.log("notifications connected.");
+              notificationHubConnection.invoke("GetNotifications")["catch"](function (err) {
+                return console.log(err.toString());
+              });
+              _context3.next = 11;
+              break;
+
+            case 8:
+              _context3.prev = 8;
+              _context3.t0 = _context3["catch"](0);
+              console.log(_context3.t0);
+
+            case 11:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[0, 8]]);
+    }));
+    return _startNotificationHubConnection.apply(this, arguments);
+  }
+
+  ;
+
+  function startNotificationHubConnectionWithAutoReconnect(_x, _x2) {
+    return _startNotificationHubConnectionWithAutoReconnect.apply(this, arguments);
+  }
+
+  function _startNotificationHubConnectionWithAutoReconnect() {
+    _startNotificationHubConnectionWithAutoReconnect = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(timeoutMs, reload) {
+      return _regenerator["default"].wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.prev = 0;
+              _context4.next = 3;
+              return notificationHubConnection.start();
+
+            case 3:
+              if (reload) {
+                console.log("notice hub reloading...");
+                window.location.reload(true);
+              } else {
+                console.log("notice hub connected.");
+              }
+
+              _context4.next = 10;
+              break;
+
+            case 6:
+              _context4.prev = 6;
+              _context4.t0 = _context4["catch"](0);
+              console.log(_context4.t0);
+              setTimeout(function () {
+                return startNotificationHubConnectionWithAutoReconnect(timeoutMs, true);
+              }, timeoutMs);
+
+            case 10:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4, null, [[0, 6]]);
+    }));
+    return _startNotificationHubConnectionWithAutoReconnect.apply(this, arguments);
+  }
+
+  ; //Dialogs
+
+  /**
+   * Обновляет счетчик в меню
+   * @param {any} count
+   */
+
+  function displayCounterUnreadDialogs(count) {
+    if (!dialogNewMessageIcon) return false;
+
+    if (count > 0) {
+      dialogNewMessageIcon.classList.remove('collapse');
+    } else {
+      dialogNewMessageIcon.classList.add('collapse');
+    }
+  }
+
+  ; //Auctions
+
+  /**
+   * Обновляет счетчик в меню уведомлений
+   * @param {any} container
+   * @param {any} value
+   */
+
+  function displayNoticeCounter(container, value) {
+    if (value > 0) {
+      container.html(value);
+    } else {
+      container.html('0');
+    }
+  }
+
+  ;
+  /**
+   * Возвращает текущее значение счетчика
+   * @param {any} container
+   */
+
+  function increaseByOneNoticeCounter(container) {
+    var value = parseInt(container.html());
+    value++;
+    container.html(value);
+  }
+  /**
+   * Добавляет на страницу список уведомлений в соответствующую группу
+   * @param {any} container - ul-обертка для li
+   * @param {any} collection 
+   */
+
+
+  function addNoticeList(container, collection) {
+    if (!collection.length) {
+      addEmptyNotificationMessage(container);
+    }
+
+    collection.reverse().forEach(function (notice) {
+      var li = document.createElement("li");
+      li.classList.add("drop-card__item");
+
+      if (notice.isNew) {
+        li.classList.add('item--isNew');
+      }
+
+      var a = document.createElement("a");
+      a.classList.add("drop-card__link");
+      a.href = "/Notification/RedirectToSource?id=" + notice.id;
+      a.textContent = notice.title;
+
+      if (notice.message) {
+        var span = document.createElement("span");
+        span.classList.add("drop-card__message");
+        span.textContent = notice.message;
+        a.appendChild(span);
+      }
+
+      li.appendChild(a);
+      container.append(li);
+    });
+  }
+
+  ;
+
+  function addEmptyNotificationMessage(ul) {
+    var li = document.createElement("li");
+    li.textContent = "Оповещений нет";
+    li.classList.add("drop-card__link");
+    ul.append(li);
+  }
+
+  ;
+
+  function addPulseForButton() {
+    $('#DropdownToggler').addClass('pulsingButton');
+  }
+
+  ;
+
+  function removePulseForButton() {
+    $('#DropdownToggler').removeClass('pulsingButton');
+  }
+
+  var purchaseNoticesReceived = false;
+  var offerNoticesReceived = false;
+  var auctionNoticesReceived = false;
+  var contractNoticesReceived = false;
+  var dealNoticesReceived = false;
+  var financeNoticesReceived = false;
+
+  function uploadNotifications(type) {
+    var methodName;
+
+    switch (type) {
+      case wrapper.purchases:
+        if (purchaseNoticesReceived) return;
+        purchaseNoticesReceived = true;
+        methodName = "GetPurchasesNotices";
+        break;
+
+      case wrapper.offers:
+        if (offerNoticesReceived) return;
+        offerNoticesReceived = true;
+        methodName = "GetOffersNotices";
+        break;
+
+      case wrapper.auctions:
+        if (auctionNoticesReceived) return;
+        auctionNoticesReceived = true;
+        methodName = "GetAuctionsNotices";
+        break;
+
+      case wrapper.updatedContracts:
+        if (contractNoticesReceived) return;
+        contractNoticesReceived = true;
+        methodName = "GetContractsNotices";
+        break;
+
+      case wrapper.updatedDeals:
+        if (dealNoticesReceived) return;
+        dealNoticesReceived = true;
+        methodName = "GetDealsNotices";
+        break;
+
+      case wrapper.finance:
+        if (financeNoticesReceived) return;
+        financeNoticesReceived = true;
+        methodName = "GetFinanceNotices";
+        break;
+
+      default:
+        return;
+    }
+
+    notificationHubConnection.invoke(methodName)["catch"](function (err) {
+      return console.log(err.toString());
+    });
+  }
+
+  ;
+
+  function readAllNotices() {
+    notificationHubConnection.invoke("ReadAll")["catch"](function (err) {
+      return console.log(err.toString());
+    });
+  }
+
+  var readAllButton = document.getElementById("ReadAllNotices");
+  if (!readAllButton) return;
+  /**
+   * *Запускает процесс загрузки данных для просматриваемой группы (карточки) уведомлений*
+   */
+
+  var notificationGroups = document.querySelectorAll('.drop-card');
+  notificationGroups.forEach(function (group) {
+    group.addEventListener('click', displayNotificationGroup);
+  });
+
+  function displayNotificationGroup() {
+    var currentTypes = this.getAttribute('data-type');
+    var arrOfTypes = currentTypes.split(" ");
+    arrOfTypes.forEach(function (type) {
+      uploadNotifications(type);
+    });
+  }
+
+  document.getElementById("ReadAllNotices").addEventListener('click', readAllNotices);
+  /**
+   * *Отображает/скрывает меню всех уведомлений* 
+   */
+
+  var dropdownToggler = document.getElementById('DropdownToggler');
+  var dropdownMenu = document.getElementById('DropdownMenu');
+  var bellIcon = document.querySelector('.fa-bell');
+  dropdownToggler.addEventListener('click', function () {
+    var togglerState = dropdownToggler.getAttribute('data-state');
+    console.log(togglerState);
+
+    switch (togglerState) {
+      case 'closed':
+        openNotificationMenu();
+        break;
+
+      case 'opened':
+        closeNotificationMenu();
+        break;
+    }
+  });
+  document.addEventListener('click', function (event) {
+    if (event.target.closest("#DropdownMenu") || event.target === dropdownToggler || event.target === bellIcon) return;
+    closeNotificationMenu();
+  });
+
+  function openNotificationMenu() {
+    dropdownMenu.classList.remove('collapse');
+    dropdownMenu.classList.remove('smoothlyHide');
+    dropdownMenu.classList.add('smoothlyShow');
+    dropdownToggler.setAttribute('data-state', 'opened');
+  }
+
+  function closeNotificationMenu() {
+    dropdownMenu.classList.remove('smoothlyShow');
+    dropdownMenu.classList.add('smoothlyHide');
+    setTimeout(function () {
+      dropdownMenu.classList.add('collapse');
+    }, 300);
+    dropdownToggler.setAttribute('data-state', 'closed');
+  }
+  /**
+   * *Раскрывает/скрывает выбранную группу (карточку) уведомлений*
+   */
+
+
+  var cardTogglers = document.querySelectorAll('.toggler--js');
+  var notificationQuantities = document.querySelectorAll('.drop-card__qty');
+  var cardFixedHeight = 200;
+  var currentCard = null;
+  var prevCard = null;
+  cardTogglers.forEach(function (toggler) {
+    toggler.addEventListener('click', function () {
+      var togglerID = toggler.dataset.id;
+      var cardID = 'card-' + togglerID;
+      currentCard = document.querySelector('[data-id=' + cardID + ']');
+      var state = currentCard.getAttribute('data-state');
+
+      if (state === 'closed') {
+        toggleCard(currentCard, cardFixedHeight, 'opened');
+      } else if (state === 'opened') {
+        toggleCard(currentCard, 0, 'closed');
+      }
+
+      if (prevCard && prevCard !== currentCard) {
+        toggleCard(prevCard, 0, 'closed');
+      }
+
+      prevCard = currentCard;
+      setTimeout(function () {
+        if (isNotifictionsRead()) {
+          dropdownToggler.classList.remove('pulsingButton');
+        }
+      }, 1500);
+    });
+  });
+
+  function toggleCard(card, cardHeight, state) {
+    card.style.height = cardHeight + "px";
+    card.setAttribute('data-state', state);
+  }
+
+  function isNotifictionsRead() {
+    var numOfQtyCounters = +notificationQuantities.length;
+    var counter = 0;
+    notificationQuantities.forEach(function (qty) {
+      if (qty.textContent == '0') {
+        counter++;
+      }
+    });
+
+    if (counter >= numOfQtyCounters) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  /**
+  * *Ограничивает количество символов названия организации в хэдере
+  */
+
+
+  var symLimit = 39;
+  var tag = document.getElementById('headerOrganizationName');
+  if (!tag) return false;
+  var name = tag.textContent;
+
+  if (name.length > symLimit) {
+    var cuttedText = name.slice(0, symLimit);
+    tag.textContent = cuttedText + "...";
+  }
+
+  connectToNotificationHub();
+});
+
+/***/ }),
+
+/***/ "./js/main.js":
+/*!********************!*\
+  !*** ./js/main.js ***!
+  \********************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+
+
+__webpack_require__(/*! ./common/notificationHub */ "./js/common/notificationHub.js");
+
+__webpack_require__(/*! ./common/menuHandler */ "./js/common/menuHandler.js");
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		if(__webpack_module_cache__[moduleId]) {
+/******/ 			return __webpack_module_cache__[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
+/******/ 	// the startup function
+/******/ 	// It's empty as some runtime module handles the default behavior
+/******/ 	__webpack_require__.x = x => {};
+/************************************************************************/
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		// no baseURI
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// Promise = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"main": 0
+/******/ 		};
+/******/ 		
+/******/ 		var deferredModules = [
+/******/ 			["./js/main.js","vendors-node_modules_babel_runtime_helpers_asyncToGenerator_index_js-node_modules_babel_runti-36f517"]
+/******/ 		];
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		var checkDeferredModules = x => {};
+/******/ 		
+/******/ 		// install a JSONP callback for chunk loading
+/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
+/******/ 			var [chunkIds, moreModules, runtime, executeModules] = data;
+/******/ 			// add "moreModules" to the modules object,
+/******/ 			// then flag all "chunkIds" as loaded and fire callback
+/******/ 			var moduleId, chunkId, i = 0, resolves = [];
+/******/ 			for(;i < chunkIds.length; i++) {
+/******/ 				chunkId = chunkIds[i];
+/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 					resolves.push(installedChunks[chunkId][0]);
+/******/ 				}
+/******/ 				installedChunks[chunkId] = 0;
+/******/ 			}
+/******/ 			for(moduleId in moreModules) {
+/******/ 				if(__webpack_require__.o(moreModules, moduleId)) {
+/******/ 					__webpack_require__.m[moduleId] = moreModules[moduleId];
+/******/ 				}
+/******/ 			}
+/******/ 			if(runtime) runtime(__webpack_require__);
+/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
+/******/ 			while(resolves.length) {
+/******/ 				resolves.shift()();
+/******/ 			}
+/******/ 		
+/******/ 			// add entry modules from loaded chunk to deferred list
+/******/ 			if(executeModules) deferredModules.push.apply(deferredModules, executeModules);
+/******/ 		
+/******/ 			// run deferred modules when all chunks ready
+/******/ 			return checkDeferredModules();
+/******/ 		}
+/******/ 		
+/******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
+/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
+/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 		
+/******/ 		function checkDeferredModulesImpl() {
+/******/ 			var result;
+/******/ 			for(var i = 0; i < deferredModules.length; i++) {
+/******/ 				var deferredModule = deferredModules[i];
+/******/ 				var fulfilled = true;
+/******/ 				for(var j = 1; j < deferredModule.length; j++) {
+/******/ 					var depId = deferredModule[j];
+/******/ 					if(installedChunks[depId] !== 0) fulfilled = false;
+/******/ 				}
+/******/ 				if(fulfilled) {
+/******/ 					deferredModules.splice(i--, 1);
+/******/ 					result = __webpack_require__(__webpack_require__.s = deferredModule[0]);
+/******/ 				}
+/******/ 			}
+/******/ 			if(deferredModules.length === 0) {
+/******/ 				__webpack_require__.x();
+/******/ 				__webpack_require__.x = x => {};
+/******/ 			}
+/******/ 			return result;
+/******/ 		}
+/******/ 		var startup = __webpack_require__.x;
+/******/ 		__webpack_require__.x = () => {
+/******/ 			// reset startup function so it can be called again when more startup code is added
+/******/ 			__webpack_require__.x = startup || (x => {});
+/******/ 			return (checkDeferredModules = checkDeferredModulesImpl)();
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// run startup
+/******/ 	var __webpack_exports__ = __webpack_require__.x();
+/******/ 	
+/******/ })()
+;
+//# sourceMappingURL=main.js.map
