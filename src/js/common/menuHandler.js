@@ -1,5 +1,4 @@
 window.addEventListener('DOMContentLoaded', () => {
-	
 	/**
 	 * *Открывает и закрывает бургер-меню в мобильной версии
 	 */
@@ -10,16 +9,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	let isMenuOpened = false;
 
-	menuTogglerWrapper.addEventListener('click', function () {
-		menuToggler.classList.toggle('toggler--active');
-		if (!isMenuOpened) {
-			openMenu();
-		} else {
-			closeMenu();
-		}
-	});
-
-	function openMenu() {
+	const openMenu = () => {
 		headerMenu.classList.add('menu--opened');
 		headerMenuContent.classList.remove('collapse');
 		headerMenuContent.classList.remove('smoothlyHide');
@@ -27,7 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		isMenuOpened = true;
 	};
 
-	function closeMenu() {
+	const closeMenu = () => {
 		headerMenuContent.classList.remove('smoothlyShow');
 		headerMenuContent.classList.add('smoothlyHide');
 		setTimeout(function () {
@@ -37,45 +27,14 @@ window.addEventListener('DOMContentLoaded', () => {
 		isMenuOpened = false;
 	};
 
-
-
-	/**
-	 * *Переключатель левого меню (сайдбар) в мобильной версии
-	 */
-	const leftMenuTogglerWrapper = document.getElementById('LeftBurgerMenuToggler');
-	
-	if (!leftMenuTogglerWrapper) return;
-
-	const leftMenuToggler = document.querySelector('.main-header__menu-button--left');
-	const leftHeaderMenu = document.getElementById('Sidebar');
-	let isLeftMenuOpened = false;
-
-	leftMenuTogglerWrapper.addEventListener('click', function () {
-		if (!isLeftMenuOpened) {
-			openLeftMenu();
+	menuTogglerWrapper.addEventListener('click', function () {
+		menuToggler.classList.toggle('toggler--active');
+		if (!isMenuOpened) {
+			openMenu();
 		} else {
-			closeLeftMenu();
+			closeMenu();
 		}
 	});
-
-	function openLeftMenu() {
-		setSpoilerDisplayAfterPageReload();
-		leftMenuToggler.classList.add('menu--left');
-		leftHeaderMenu.classList.add('left-menu--max-height');
-		setTimeout(function () {
-			leftHeaderMenu.classList.add('left-menu--opened');
-		}, 100);
-		isLeftMenuOpened = true;
-	};
-
-	function closeLeftMenu() {
-		leftMenuToggler.classList.remove('menu--left');
-		leftHeaderMenu.classList.remove('left-menu--opened');
-		setTimeout(function () {
-			leftHeaderMenu.classList.remove('left-menu--max-height');
-		}, 500);
-		isLeftMenuOpened = false;
-	};
 
 
 
@@ -83,8 +42,8 @@ window.addEventListener('DOMContentLoaded', () => {
 	 * *Переключатель спойлеров левого меню (сайдбар)
 	 */
 	const spoilerLinks = document.querySelectorAll('.sidebar__link--spoiler');
-	const spoilerIcons = document.querySelectorAll('.sidebar__link-icon');
-	const spoilerLists = document.querySelectorAll('.sidebar__list--spoiler');
+	// const spoilerIcons = document.querySelectorAll('.sidebar__link-icon');
+	// const spoilerLists = document.querySelectorAll('.sidebar__list--spoiler');
 
 	const getSpoilerState = link => sessionStorage.getItem(link);
 
@@ -150,4 +109,42 @@ window.addEventListener('DOMContentLoaded', () => {
 		});
 	};
 	setSpoilerDisplayAfterPageReload();
+
+
+
+	/**
+	 * *Переключатель левого меню (сайдбар) в мобильной версии
+	 */
+	const leftMenuTogglerWrapper = document.getElementById('LeftBurgerMenuToggler');
+	const leftMenuToggler = document.querySelector('.main-header__menu-button--left');
+	const leftHeaderMenu = document.getElementById('Sidebar');
+	let isLeftMenuOpened = false;
+	
+	if(!leftMenuTogglerWrapper) return false;
+	const openLeftMenu = () => {
+		setSpoilerDisplayAfterPageReload();
+		leftMenuToggler.classList.add('menu--left');
+		leftHeaderMenu.classList.add('left-menu--max-height');
+		setTimeout(function () {
+			leftHeaderMenu.classList.add('left-menu--opened');
+		}, 100);
+		isLeftMenuOpened = true;
+	};
+
+	const closeLeftMenu = () => {
+		leftMenuToggler.classList.remove('menu--left');
+		leftHeaderMenu.classList.remove('left-menu--opened');
+		setTimeout(function () {
+			leftHeaderMenu.classList.remove('left-menu--max-height');
+		}, 500);
+		isLeftMenuOpened = false;
+	};
+
+	leftMenuTogglerWrapper.addEventListener('click', function () {
+		if (!isLeftMenuOpened) {
+			openLeftMenu();
+		} else {
+			closeLeftMenu();
+		}
+	});
 });

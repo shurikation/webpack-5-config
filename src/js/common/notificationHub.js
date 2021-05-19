@@ -1,18 +1,4 @@
-﻿// import '../service/jquery';
-// import {https} as https from 'eventsource';
-// import { https } from 'ng-event-source';
-
-// import '../../../node_modules/eventsource/lib/eventsource';
-
-// import https from '../../../node_modules/eventsource/lib/eventsource';
-// import '../../../node_modules/eventsource/lib/eventsource-polyfill';
-
-// import '../service/jquery.validate.min';
-// import '../service/jquery.validate.unobtrusive.min';
-// import '../service/signalr';
-
-
-var notificationHubConnection;
+﻿var notificationHubConnection;
 var purchaseNoticesreceived = false;
 var offerNoticesreceived = false;
 var auctionNoticesreceived = false;
@@ -210,6 +196,8 @@ async function startNotificationHubConnectionWithAutoReconnect(timeoutMs, reload
  * @param {any} count
  */
 function displayCounterUnreadDialogs(count) {
+	if(!dialogNewMessageIcon) return false;
+
     if (count > 0) {
 		dialogNewMessageIcon.classList.remove('collapse');		
 	}

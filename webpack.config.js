@@ -11,7 +11,8 @@ const isProd = !isDev;
 
 const filename = (ext) => isDev 
 	?  `[name].${ext}` 
-	:  `[name].[contenthash].${ext}`
+	// :  `[name].[contenthash].${ext}`
+	:  `[name].${ext}`
 
 const optimization = () => {
 	const configObj = {
